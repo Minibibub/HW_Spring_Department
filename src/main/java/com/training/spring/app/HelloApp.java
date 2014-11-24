@@ -21,23 +21,37 @@ public class HelloApp {
     }
 
     private static void loadXmlClasspathApplicationContext() {
+    	
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        
         Hello hello = (Hello) context.getBean("hello");
-        System.out.println("############### Hello ###################");
+        
+        System.out.println("------ Hello ------");
         System.out.println("hello : " + hello);
         System.out.println("hello.humen : " + hello.getHumen());
 
-
-        System.out.println("############### Humen ###################");
+//      cast เปลี่ยน type ให้ตรงกัน  >> (Humen)
+        System.out.println("\n------ Humen ------");
         Humen humen = (Humen) context.getBean("humen");
         System.out.println("humen : "+ humen);
 
-        System.out.println("############### Humen Object ###################");
+//      ประกาศเป็น >> (Humen.class) ปลอดภัยกว่า cast เพราะ cast อาจพิมผิดได้ 
+        System.out.println("\n------ Humen Object ------");
         Humen humenObj = context.getBean(Humen.class);
         System.out.println("humenObj : "+ humenObj);
-
-
-        ExampleComponent component = context.getBean(ExampleComponent.class);
-        System.out.println("component : " + component);
+        
+//      hello เรียก หรืออ้างอิง จาก humen
+        System.out.println("\n------ Humen Reference ------");
+        System.out.println("Display humen firstname : " + hello.getHumen().getFirstName());
+        System.out.println("Display humen lastname : " + hello.getHumen().getLastName());
+        
+//      humen เรียก หรืออ้างอิง จาก hello
+        System.out.println("\n------ Hello Reference ------");
+        System.out.println("Display hello age : " + humen.getHello().getAge());
+        System.out.println("Display hello message : " + humen.getHello().getMessage());
+        
+//        System.out.println("\n------ Component ------");   // ExampleComponent แบบ ปกติ
+//        ExampleComponent component = context.getBean(ExampleComponent.class);
+//        System.out.println("component : " + component);
     }
 }

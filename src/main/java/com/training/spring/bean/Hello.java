@@ -1,11 +1,16 @@
 package com.training.spring.bean;
 
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 
 /**
  * User: assanai.manurat
  * Date: 4/20/2014
  * Time: 4:09 PM
  */
+
+@Component // ใส่หลังจากเรียน service เพื่อเตรียมทุกๆอย่าง เพื่อให้หาเจอ
 public class Hello {
 
 
